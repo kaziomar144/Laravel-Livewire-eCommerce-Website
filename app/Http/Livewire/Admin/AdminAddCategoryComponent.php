@@ -15,7 +15,7 @@ class AdminAddCategoryComponent extends Component
     {
         $this->slug = Str::slug($this->name);
         if(!empty($this->name)){
-            $this->slug .= '%&%'.rand(10000000,99999999);
+            $this->slug .= '$$$'.rand(10000000,99999999);
         }
     }
     public function resetForm()
