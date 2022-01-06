@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\Admin\AdminCategoryComponent;
 use App\Http\Livewire\Admin\AdminDashboardComponent;
 use App\Http\Livewire\CartComponent;
 use App\Http\Livewire\CategoryComponent;
@@ -44,12 +45,25 @@ Route::get('/search',SearchComponent::class)->name('product.search');
 //     return view('dashboard');
 // })->name('dashboard');
 
-// For User or Customer
-Route::middleware(['auth:sanctum','verified'])->group(function (){
-    Route::get('user/deshboard',UserDashboardComponent::class)->name('user.dashborad');
+
+
+// ==========For User or Customer================
+
+// Route::middleware(['auth:sanctum','verified'])->group(function (){
+//     Route::get('user/deshboard',UserDashboardComponent::class)->name('user.dashborad');
+// });
+
+Route::group(['prefix' => 'user','middleware' => ['auth:sanctum','verified']], function(){
+    Route::get('/deshboard',UserDashboardComponent::class)->name('user.dashborad');
 });
 
-//For Admin
-Route::middleware(['auth:sanctum','verified','authadmin'])->group(function (){
-    Route::get('admin/deshboard',AdminDashboardComponent::class)->name('admin.dashboard');
+//==========For Admin============
+
+// Route::middleware(['auth:sanctum','verified','authadmin'])->group(function (){
+//     Route::get('admin/deshboard',AdminDashboardComponent::class)->name('admin.dashboard');
+// });
+
+Route::group(['prefix' => 'admin','middleware' => ['auth:sanctum','verified','authadmin']], function() {
+    Route::get('/deshboard',AdminDashboardComponent::class)->name('admin.dashboard');
+    Route::get('/categories',AdminCategoryComponent::class)->name('admin.categories');
 });

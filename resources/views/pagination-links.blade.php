@@ -4,7 +4,7 @@
 	@if ($paginator->onFirstPage())
 		<li><a class=" next-link btn-disable">Previous</a></li>
 	@else
-		<li><a class="page-number-item next-link cursor-pointer" wire:click="previousPage" >Previous</a></li>
+		<li><a class="page-number-item next-link cursor-pointer" wire:click="previousPage('{{ $paginator->getPageName() }}')" wire:loading.attr="disabled" rel="prev">Previous</a></li>
 	@endif
 	
 	{{-- Previous End --}}
@@ -51,7 +51,7 @@
 	
 		{{-- Next --}}
 		@if ($paginator->hasMorePages())
-		<li><a class="page-number-item next-link cursor-pointer" wire:click="nextPage">Next</a></li>
+		<li><a class="page-number-item next-link cursor-pointer" wire:click="nextPage('{{ $paginator->getPageName() }}')" wire:loading.attr="disabled" rel="next">Next</a></li>
 		@else
 		<li><a class="btn-disable next-link">Next</a></li>
 		@endif
