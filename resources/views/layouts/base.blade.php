@@ -79,7 +79,10 @@
 														<a title="Dashboard" href="{{route('admin.dashboard')}}">Dashboard</a>
 													</li>
 													<li class="menu-item" >
-														<a title="Categories" href="{{route('admin.categories')}}">Categories</a>
+														<a title="Categories" href="{{route('admin.categories')}}">Categories</a>						
+													</li>
+													<li class="menu-item" >
+														<a title="Categories" href="{{route('admin.products')}}">Products</a>						
 													</li>
 													<form action="{{route('logout')}}" method="POST">
 														@csrf
