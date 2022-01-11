@@ -44,7 +44,7 @@
                                          <td>{{$product->created_at}}</td>
                                          <td>
                                              <a href="{{route('admin.editproduct',[$product->slug])}}" class="btn btn-success">Edit</a>
-                                             <a href="#" class="btn btn-danger">Delete</a>
+                                             <a wire:click.prevent="deleteProduct({{$product->id}})" class="btn btn-danger">Delete</a>
                                          </td>
                                      </tr>
                                  @endforeach
