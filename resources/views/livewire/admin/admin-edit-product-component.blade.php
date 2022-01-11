@@ -19,7 +19,7 @@
 								{{Session::get('msg')}}
 							</div>
 						@endif
-                        <form class="form-horizontal" wire:submit.prevent="storeProduct" enctype="multipart/form-data">
+                        <form class="form-horizontal" wire:submit.prevent="updateProduct" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Product Name:</label>
@@ -120,12 +120,14 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Product Image:</label>
                                 <div class="col-md-4">
-                                    <input type="file" class="form-control" wire:model="product_image">
-                                    @error('product_image')
+                                    <input type="file" class="form-control" wire:model="newImage">
+                                    @error('newImage')
                                         <div class="invalid-feedback" style="color: crimson">{{$message}}</div>
                                     @enderror
-                                    @if ($product_image)
-                                        <img src="{{$product_image->temporaryUrl()}}" width="120">
+                                    @if ($newImage)
+                                        <img src="{{$newImage->temporaryUrl()}}" width="120">
+                                    @else 
+                                        <img src="{{asset('assets/images/products')}}/{{$product_image}}" width="120"  alt="{{$product_name}}">
                                     @endif
                                 </div>
                             </div>

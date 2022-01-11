@@ -43,7 +43,7 @@
                                          <td>{{$product->category->name}}</td>
                                          <td>{{$product->created_at}}</td>
                                          <td>
-                                             <a href="" class="btn btn-success">Edit</a>
+                                             <a href="{{route('admin.editproduct',[$product->slug])}}" class="btn btn-success">Edit</a>
                                              <a href="#" class="btn btn-danger">Delete</a>
                                          </td>
                                      </tr>
