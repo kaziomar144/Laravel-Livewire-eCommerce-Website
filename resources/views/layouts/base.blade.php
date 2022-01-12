@@ -82,7 +82,10 @@
 														<a title="Categories" href="{{route('admin.categories')}}">Categories</a>						
 													</li>
 													<li class="menu-item" >
-														<a title="Categories" href="{{route('admin.products')}}">Products</a>						
+														<a title="Products" href="{{route('admin.products')}}">Products</a>						
+													</li>
+													<li class="menu-item" >
+														<a title="Manage Home Slider" href="{{route('admin.homeslider')}}">Manage Home Slider</a>						
 													</li>
 													<form action="{{route('logout')}}" method="POST">
 														@csrf
