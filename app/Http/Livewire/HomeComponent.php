@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\HomeCategory;
 use App\Models\HomeSlider;
 use App\Models\Product;
+use Carbon\Carbon;
 use Livewire\Component;
 
 class HomeComponent extends Component
@@ -18,8 +19,9 @@ class HomeComponent extends Component
         $cats = explode(',', $category->sel_categories);
         // dd($cats);
         $categories = Category::whereIn('id',$cats)->get();
-        
         $no_fo_products = $category->no_of_products;
-        return view('livewire.home-component',compact('sliders','latest_products','categories','no_fo_products'))->layout('layouts.base');
+
+        $sale_products = Product::where('sale_price','>',0)->inRandomOrder()->get()->take(8);
+        return view('livewire.home-component',compact('sliders','latest_products','categories','no_fo_products','sale_products'))->layout('layouts.base');
     }
 }

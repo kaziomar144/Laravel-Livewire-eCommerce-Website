@@ -27,6 +27,7 @@
                                      <th>Name</th>
                                      <th>Stock</th>
                                      <th>Price</th>
+                                     <th>Sale Price</th>
                                      <th>Category</th>
                                      <th>Date</th>
                                      <th>Action</th>
@@ -39,7 +40,8 @@
                                          <td><img src="{{asset('assets')}}/images/products/{{$product->image}}" alt="{{$product->name}}" width="60px"></td>
                                          <td>{{$product->name}}</td>
                                          <td>{{$product->stock_status}}</td>
-                                         <td>{{$product->regular_price}}</td>
+                                         <td>${{$product->regular_price}}</td>
+                                         <td style="{{$product->sale_price > 0 ? 'color: #FF2832' : ''}}">{{$product->sale_price > 0 ? '$'.$product->sale_price : '$0.00'}}</td>
                                          <td>{{$product->category->name}}</td>
                                          <td>{{$product->created_at}}</td>
                                          <td>
