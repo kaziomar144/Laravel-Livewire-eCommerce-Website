@@ -33,10 +33,10 @@
         </div>
 
         <!--On Sale-->
-        @if ($sale_products->count() > 0)
+        @if ($sale_products->count() > 0 && $sale->status == 1 && $sale->sale_date > Carbon\Carbon::now())
             <div class="wrap-show-advance-info-box style-1 has-countdown">
                 <h3 class="title-box">On Sale</h3>
-                <div class="wrap-countdown mercado-countdown" data-expire="2022/01/13 10:10:56"></div>
+                <div class="wrap-countdown mercado-countdown" data-expire="{{Carbon\Carbon::parse($sale->sale_date)->format('Y/m/d h:m:s')}}"></div>
                 <div class="wrap-products slide-carousel owl-carousel style-nav-1 equal-container " data-items="5" data-loop="false" data-nav="true" data-dots="false" data-responsive='{"0":{"items":"1"},"480":{"items":"2"},"768":{"items":"3"},"992":{"items":"4"},"1200":{"items":"5"}}'>
                     @foreach ($sale_products as $sale_product)
                         <div class="product product-style-2 equal-elem ">
@@ -45,6 +45,9 @@
                                     <figure><img src="{{asset('assets')}}/images/products/{{$sale_product->image}}" width="800" height="800" alt="{{$sale_product->name}}"></figure>
                                 </a>
                                 <div class="group-flash">
+                                    @if (Carbon\Carbon::parse($sale_product->created_at)->addDays(4) >= Carbon\Carbon::now())
+                                        <span class="flash-item new-label">new</span>
+                                    @endif
                                     <span class="flash-item sale-label">sale</span>
                                 </div>
                                 <div class="wrap-btn">
@@ -82,7 +85,7 @@
                                         </a>
                                         <div class="group-flash">
                                             <span class="flash-item new-label">new</span>
-                                            @if ($latest_product->sale_price)
+                                            @if ($latest_product->sale_price  && $sale->status == 1 && $sale->sale_date > Carbon\Carbon::now())
                                                 <span class="flash-item sale-label">sale</span>
                                             @endif
                                         </div>
@@ -92,7 +95,7 @@
                                     </div>
                                     <div class="product-info">
                                         <a href="{{route('product.details',[$latest_product->slug])}}" class="product-name"><span>{{ \Illuminate\Support\Str::limit($latest_product->name, 25, $end='...') }}</span></a>
-                                        @if ($latest_product->sale_price)
+                                        @if ($latest_product->sale_price  && $sale->status == 1 && $sale->sale_date > Carbon\Carbon::now())
                                             <div class="wrap-price"><ins><p class="product-price">${{$latest_product->sale_price}}</p></ins> <del><p class="product-price">${{$latest_product->regular_price}}</p></del></div>
                                         @else
                                             <div class="wrap-price"><span class="product-price">${{$latest_product->regular_price}}</span></div>  
@@ -141,8 +144,10 @@
                                                     <figure><img src="{{asset('assets')}}/images/products/{{$c_product->image}}" width="800" height="800" alt="{{$c_product->name}}"></figure>
                                                 </a>
                                                 <div class="group-flash">
-                                                    <span class="flash-item new-label">new</span>
-                                                    @if ($c_product->sale_price)
+                                                    @if (Carbon\Carbon::parse($c_product->created_at)->addDays(4) >= Carbon\Carbon::now())
+                                                        <span class="flash-item new-label">new</span>
+                                                    @endif
+                                                    @if ($c_product->sale_price  && $sale->status == 1 && $sale->sale_date > Carbon\Carbon::now())
                                                         <span class="flash-item sale-label">sale</span>
                                                     @endif
                                                 </div>
@@ -152,7 +157,7 @@
                                             </div>
                                             <div class="product-info">
                                                 <a href="{{route('product.details',[$c_product->slug])}}" class="product-name"><span>{{Str::limit($c_product->name, 25, '...')}}</span></a>
-                                                @if ($c_product->sale_price)
+                                                @if ($c_product->sale_price  && $sale->status == 1 && $sale->sale_date > Carbon\Carbon::now())
                                                     <div class="wrap-price"><ins><p class="product-price">${{$c_product->sale_price}}</p></ins> <del><p class="product-price">${{$c_product->regular_price}}</p></del></div>
                                                 @else
                                                     <div class="wrap-price"><span class="product-price">${{$c_product->regular_price}}</span></div>

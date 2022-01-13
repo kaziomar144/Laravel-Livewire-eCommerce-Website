@@ -31,7 +31,7 @@
 								<div class="product-name">
 									<a class="link-to-product" href="{{route('product.details',['slug'=>$item->model->slug])}}">{{$item->name}}</a>
 								</div>
-								@if ($item->model->sale_price)
+								@if ($item->model->sale_price && $sale->status == 1 && $sale->sale_date > Carbon\Carbon::now())
 								<div class="price-field produtc-price"><span class="price">${{$item->model->sale_price}}</span> <del><span class="price">${{$item->model->regular_price}}</span></del></div>
 								@else
 								<div class="price-field produtc-price"><p class="price">${{$item->model->regular_price}}</p></div>

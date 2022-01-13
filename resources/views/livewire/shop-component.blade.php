@@ -66,10 +66,18 @@
 										<a href="{{route('product.details',['slug'=>$product->slug])}}" title="{{$product->name}}">
 											<figure><img src="{{asset('assets')}}/images/products/{{$product->image}}" alt="{{$product->name}}"></figure>
 										</a>
+										<div class="group-flash">
+											@if (Carbon\Carbon::parse($product->created_at)->addDays(4) >= Carbon\Carbon::now())
+												<span class="flash-item new-label">new</span>
+											@endif
+                                            @if ($product->sale_price  && $sale->status == 1 && $sale->sale_date > Carbon\Carbon::now())
+                                                <span class="flash-item sale-label">sale</span>
+                                            @endif
+                                        </div>
 									</div>
 									<div class="product-info">
 										<a href="{{route('product.details',['slug'=>$product->slug])}}" class="product-name"><span>{{ \Illuminate\Support\Str::limit($product->name, 25, $end='...') }}</span></a>
-										@if ($product->sale_price)
+										@if ($product->sale_price && $sale->status == 1 && $sale->sale_date > Carbon\Carbon::now())
 										<div class="wrap-price"><ins><p class="product-price">${{$product->sale_price}}</p></ins> <del><p class="product-price">${{$product->regular_price}}</p></del></div>
 										<a wire:click.prevent="store({{$product->id}},'{{$product->name}}',{{$product->sale_price}})" class="btn add-to-cart">Add To Cart</a>
 										@else

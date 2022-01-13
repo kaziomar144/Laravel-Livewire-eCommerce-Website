@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Sale;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Cart;
@@ -40,8 +41,8 @@ class ShopComponent extends Component
         }
 
         $categories = Category::all();
-        
-        return view('livewire.shop-component',compact('products','categories'))->layout('layouts.base');
+        $sale = Sale::findOrFail(1);
+        return view('livewire.shop-component',compact('products','categories','sale'))->layout('layouts.base');
     }
     public function paginationView()
     {

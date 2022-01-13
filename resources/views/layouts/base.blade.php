@@ -18,7 +18,10 @@
 	<link rel="stylesheet" type="text/css" href="{{asset('assets')}}/css/chosen.min.css">
 	<link rel="stylesheet" type="text/css" href="{{asset('assets')}}/css/style.css">
 	<link rel="stylesheet" type="text/css" href="{{asset('assets')}}/css/color-01.css">
+	{{-- select2 cdn --}}
 	<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+	{{-- datetimepiker cdn --}}
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" />
     @livewireStyles
 </head>
 <body class="home-page home-01 ">
@@ -83,7 +86,10 @@
 														<a title="Categories" href="{{route('admin.categories')}}">Categories</a>						
 													</li>
 													<li class="menu-item" >
-														<a title="Products" href="{{route('admin.products')}}">Products</a>						
+														<a title="Products" href="{{route('admin.products')}}">Products</a>	
+													</li>
+													<li class="menu-item" >
+														<a title="Products" href="{{route('admin.sale')}}">Sale Setting</a>	
 													</li>
 													<li class="menu-item" >
 														<a title="Manage Home Slider" href="{{route('admin.homeslider')}}">Manage Home Slider</a>						
@@ -465,7 +471,7 @@
 	<script src="{{asset('assets')}}/jquery-3.6.0.min.js"></script>
 	<script src="{{asset('assets')}}/toastr.min.js"></script>
 	
-	<script src="{{asset('assets')}}/js/jquery-1.12.4.minb8ff.js?ver=1.12.4"></script>
+	{{-- <script src="{{asset('assets')}}/js/jquery-1.12.4.minb8ff.js?ver=1.12.4"></script> --}}
 	<script src="{{asset('assets')}}/js/jquery-ui-1.12.4.minb8ff.js?ver=1.12.4"></script>
 	<script src="{{asset('assets')}}/js/bootstrap.min.js"></script>
 	<script src="{{asset('assets')}}/js/jquery.flexslider.js"></script>
@@ -474,7 +480,12 @@
 	<script src="{{asset('assets')}}/js/jquery.countdown.min.js"></script>
 	<script src="{{asset('assets')}}/js/jquery.sticky.js"></script>
 	<script src="{{asset('assets')}}/js/functions.js"></script>
+	{{-- select2 cdn --}}
 	<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+	{{-- moment js cdn --}}
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+	{{-- datetimepiker cdn --}}
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
     @livewireScripts
 
 	@stack('scripts')

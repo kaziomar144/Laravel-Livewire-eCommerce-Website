@@ -11,6 +11,7 @@ use App\Http\Livewire\Admin\AdminEditProductComponent;
 use App\Http\Livewire\Admin\AdminHomeCategoryComponent;
 use App\Http\Livewire\Admin\AdminHomeSliderComponent;
 use App\Http\Livewire\Admin\AdminProductComponent;
+use App\Http\Livewire\Admin\AdminSaleComponent;
 use App\Http\Livewire\CartComponent;
 use App\Http\Livewire\CategoryComponent;
 use App\Http\Livewire\CheckoutComponent;
@@ -88,6 +89,8 @@ Route::group(['prefix' => 'admin','middleware' => ['auth:sanctum','verified','au
     Route::get('/slider/edit/{slider_id}',AdminEditHomeSliderComponent::class)->name('admin.edithomeslider');
     // for Homepage category
     Route::get('/home-categories',AdminHomeCategoryComponent::class)->name('admin.homecategories');
+    // for sale product date and time update
+    Route::get('/sale',AdminSaleComponent::class)->name('admin.sale');
 
 
 });
