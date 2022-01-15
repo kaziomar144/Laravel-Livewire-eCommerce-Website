@@ -25,7 +25,7 @@ class AdminEditCategoryComponent extends Component
     {
         $this->validateOnly($filed,[
             'name' => 'required|min:5|max:30',
-            'slug' => 'required',
+            'slug' => 'required|unique:categoties',
         ]);
     }
     public function generateSlug()
@@ -40,7 +40,7 @@ class AdminEditCategoryComponent extends Component
     {
         $this->validate([
             'name' => 'required|min:5|max:30',
-            'slug' => 'required',
+            'slug' => 'required|unique:categoties',
         ]);
         $category = Category::find($this->category_id);
         $category->name = $this->name;

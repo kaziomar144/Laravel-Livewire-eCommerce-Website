@@ -37,7 +37,7 @@ class AdminEditHomeSliderComponent extends Component
         $this->validate([
             'title' => 'required|max:100',
             'subtitle' => 'required',
-            'price' => 'required',
+            'price' => 'required|numeric',
             'link' => 'required',
             'image' => 'required',
         ]);

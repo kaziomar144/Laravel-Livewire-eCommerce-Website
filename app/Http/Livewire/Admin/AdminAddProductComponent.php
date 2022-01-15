@@ -43,10 +43,11 @@ class AdminAddProductComponent extends Component
             'slug' => 'required|unique:products',
             'short_description' => 'required|max:150',
             'description' => 'required',
-            'regular_price' => 'required',
+            'regular_price' => 'required|numeric',
+            'sale_price' => 'numeric',
             'sku' => 'required',
-            'qty' => 'required',
-            'product_image' => 'required',
+            'qty' => 'required|numeric',
+            'product_image' => 'required|mimes:jpeg,png',
             'product_category' => 'required',
         ]);
     }
@@ -57,10 +58,11 @@ class AdminAddProductComponent extends Component
             'slug' => 'required|unique:products',
             'short_description' => 'required|max:150',
             'description' => 'required',
-            'regular_price' => 'required',
+            'regular_price' => 'required|numeric',
+            'sale_price' => 'numeric',
             'sku' => 'required',
-            'qty' => 'required',
-            'product_image' => 'required',
+            'qty' => 'required|numeric',
+            'product_image' => 'required|mimes:jpeg,png',
             'product_category' => 'required',
         ]);
         $product = new Product();
