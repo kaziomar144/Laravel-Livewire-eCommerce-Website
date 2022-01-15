@@ -16,12 +16,16 @@
 	<link rel="stylesheet" type="text/css" href="{{asset('assets')}}/css/owl.carousel.min.css">
 	<link rel="stylesheet" type="text/css" href="{{asset('assets')}}/css/flexslider.css">
 	<link rel="stylesheet" type="text/css" href="{{asset('assets')}}/css/chosen.min.css">
-	<link rel="stylesheet" type="text/css" href="{{asset('assets')}}/css/style.css">
-	<link rel="stylesheet" type="text/css" href="{{asset('assets')}}/css/color-01.css">
 	{{-- select2 cdn --}}
 	<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 	{{-- datetimepiker cdn --}}
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" />
+	{{-- noui slider cdn --}}
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.5.0/nouislider.min.css"/>
+
+	{{-- style css --}}
+	<link rel="stylesheet" type="text/css" href="{{asset('assets')}}/css/style.css">
+	<link rel="stylesheet" type="text/css" href="{{asset('assets')}}/css/color-01.css">
     @livewireStyles
 </head>
 <body class="home-page home-01 ">
@@ -486,6 +490,8 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 	{{-- datetimepiker cdn --}}
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+	{{-- noui slider cdn --}}
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.5.0/nouislider.min.js"></script>
     @livewireScripts
 
 	@stack('scripts')

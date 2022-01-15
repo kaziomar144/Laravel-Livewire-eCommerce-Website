@@ -139,14 +139,11 @@
 					</div><!-- brand widget-->
 
 					<div class="widget mercado-widget filter-widget price-filter">
-						<h2 class="widget-title">Price</h2>
-						<div class="widget-content">
-							<div id="slider-range"></div>
-							<p>
-								<label for="amount">Price:</label>
-								<input type="text" id="amount" readonly>
-								<button class="filter-submit">Filter</button>
-							</p>
+						<h2 class="widget-title">Price:  &nbsp; <span style="color: #ff2832">${{$min_price}} - ${{$max_price}}</span></h2>
+						<div class="widget-content" style="padding: 10px 5px 40px 5px">
+							<div id="slider" wire:ignore></div>
+							<input type="hidden" id="min_price" value="{{$min_price}}">
+							<input type="hidden" id="max_price" value="{{$max_price}}">
 						</div>
 					</div><!-- Price-->
 
@@ -251,3 +248,29 @@
 
 	</main>
 	{{-- <!--main area--> --}}
+
+	@push('scripts')
+		<script>
+			let slider = document.getElementById('slider');
+			let min_p = parseInt(document.getElementById('min_price').value);
+			let max_p = parseInt(document.getElementById('max_price').value);
+			console.log(min_p + max_p);
+			noUiSlider.create(slider,{
+				start:[min_p,max_p],
+				connect:true,
+				range:{
+					'min' : min_p,
+					'max' :max_p
+				},
+				pips:{
+					mode: 'steps',
+					stepped:true,
+					density:4
+				}
+			});
+			slider.noUiSlider.on('update',function(value){
+				@this.set('min_price',value[0]);
+				@this.set('max_price',value[1]);
+			})
+		</script>
+	@endpush

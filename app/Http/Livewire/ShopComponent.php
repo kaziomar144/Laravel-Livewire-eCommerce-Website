@@ -12,11 +12,20 @@ class ShopComponent extends Component
 {
     public $sorting;
     public $productParPage;
+    public $min_price;
+    public $max_price;
 
     public function mount()
     {
         $this->sorting = 'default';
         $this->productParPage = 12;
+
+        $this->min_price = Product::min('regular_price');
+        $this->max_price = Product::max('regular_price');
+        // $this->min_price = 1;
+        // $this->max_price = 1000;
+       
+        
     }
 
     public function store($product_id, $product_name, $product_price)
@@ -31,13 +40,13 @@ class ShopComponent extends Component
     public function render()
     {
         if($this->sorting == 'date'){
-            $products = Product::orderBy('created_at','DESC')->paginate($this->productParPage);
+            $products = Product::whereBetween('regular_price',[$this->min_price,$this->max_price])->orderBy('created_at','DESC')->paginate($this->productParPage);
         }elseif($this->sorting == 'price'){
-            $products = Product::orderBy('regular_price','ASC')->paginate($this->productParPage);
+            $products = Product::whereBetween('regular_price',[$this->min_price,$this->max_price])->orderBy('regular_price','ASC')->paginate($this->productParPage);
         }elseif($this->sorting == 'price-desc'){
-            $products = Product::orderBy('regular_price','DESC')->paginate($this->productParPage);
+            $products = Product::whereBetween('regular_price',[$this->min_price,$this->max_price])->orderBy('regular_price','DESC')->paginate($this->productParPage);
         }else{
-            $products = Product::paginate($this->productParPage);
+            $products = Product::whereBetween('regular_price',[$this->min_price,$this->max_price])->paginate($this->productParPage);
         }
 
         $categories = Category::all();
