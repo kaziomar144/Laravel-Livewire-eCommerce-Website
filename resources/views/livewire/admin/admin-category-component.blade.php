@@ -36,7 +36,7 @@
                                         <td>{{$category->slug}}</td>
                                         <td>
                                             <a href="{{route('admin.editcategory',['category_slug'=>$category->slug])}}" class="btn btn-success">Edit</a>
-                                            <a href="#" wire:click.prevent="deleteCategory({{$category->id}})" class="btn btn-danger">Delete</a>
+                                            <a href="#" onclick="confirm('Are you sure, You want to delete this category?') || event.stopImmediatePropagation()" wire:click.prevent="deleteCategory({{$category->id}})" class="btn btn-danger">Delete</a>
                                         </td>
                                     </tr>
                                 @endforeach
