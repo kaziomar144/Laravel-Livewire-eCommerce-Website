@@ -6,7 +6,7 @@
                     <div class="panel-heading">
                         <div class="row">
                             <div class="col-md-6">
-                                Add New Product
+                                Update Product
                             </div>
                             <div class="col-md-6">
                                 <a href="{{route('admin.products')}}" class="btn btn-success pull-right">All Product</a>
@@ -42,7 +42,9 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Short Description:</label>
                                 <div class="col-md-4">
-                                    <textarea placeholder="Short Description" class="form-control" wire:model="short_description"></textarea>
+                                    <div wire:ignore>
+                                        <textarea placeholder="Short Description" id="short_description" class="form-control" wire:model="short_description"></textarea>
+                                    </div>
                                     @error('short_description')
                                         <div class="invalid-feedback" style="color: crimson">{{$message}}</div>
                                     @enderror
@@ -51,7 +53,9 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Description:</label>
                                 <div class="col-md-4">
-                                    <textarea placeholder="Description" class="form-control" wire:model="description"></textarea>
+                                    <div wire:ignore>
+                                        <textarea placeholder="Description" id="description" class="form-control" wire:model="description"></textarea>
+                                    </div>
                                     @error('description')
                                         <div class="invalid-feedback" style="color: crimson">{{$message}}</div>
                                     @enderror
@@ -161,3 +165,30 @@
         </div>
     </div>
 </div>
+@push('scripts')
+    <script>
+        $(function(){
+            tinymce.init({
+                selector:'#short_description',
+                setup:function(editor){
+                    editor.on('Change',function(e){
+                        tinyMCE.triggerSave();
+                        let sd_data = $('#short_description').val();
+                        @this.set('short_description',sd_data);
+                    });
+                }
+            });
+
+            tinymce.init({
+                selector:'#description',
+                setup:function(editor){
+                    editor.on('Change',function(e){
+                        tinyMCE.triggerSave();
+                        let sd_data = $('#description').val();
+                        @this.set('description',sd_data);
+                    });
+                }
+            });
+        });
+    </script>
+@endpush

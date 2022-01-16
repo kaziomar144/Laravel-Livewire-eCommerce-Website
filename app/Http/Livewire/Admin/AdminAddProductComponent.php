@@ -41,7 +41,7 @@ class AdminAddProductComponent extends Component
         $this->validateOnly($filed,[
             'product_name' => 'required',
             'slug' => 'required|unique:products',
-            'short_description' => 'required|max:150',
+            'short_description' => 'required|max:255',
             'description' => 'required',
             'regular_price' => 'required|numeric',
             'sale_price' => 'numeric',
@@ -56,7 +56,7 @@ class AdminAddProductComponent extends Component
          $this->validate([
             'product_name' => 'required',
             'slug' => 'required|unique:products',
-            'short_description' => 'required|max:150',
+            'short_description' => 'required|max:255',
             'description' => 'required',
             'regular_price' => 'required|numeric',
             'sale_price' => 'numeric',

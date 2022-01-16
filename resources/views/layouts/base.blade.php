@@ -492,6 +492,8 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
 	{{-- noui slider cdn --}}
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.5.0/nouislider.min.js"></script>
+	{{-- tiny mce html text editor --}}
+	<script src="https://cdn.tiny.cloud/1/97p8olo7z6vie9ir1z2qdhiwsr8xx6tpzw1pmisd2v0e2mmb/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     @livewireScripts
 
 	@stack('scripts')
