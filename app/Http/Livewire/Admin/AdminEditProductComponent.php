@@ -59,14 +59,13 @@ class AdminEditProductComponent extends Component
     {
         $this->validateOnly($filed,[
             'product_name' => 'required',
-            'slug' => 'required|unique:products',
+            'slug' => 'required',
             'short_description' => 'required|max:255',
             'description' => 'required',
             'regular_price' => 'required|numeric',
-            'sale_price' => 'numeric',
             'sku' => 'required',
             'qty' => 'required|numeric',
-            'product_image' => 'required|mimes:jpeg,png',
+            'product_image' => 'required',
             'product_category' => 'required',
         ]);
     }
@@ -74,14 +73,13 @@ class AdminEditProductComponent extends Component
     { 
          $this->validate([
             'product_name' => 'required',
-            'slug' => 'required|unique:products',
+            'slug' => 'required',
             'short_description' => 'required|max:255',
             'description' => 'required',
             'regular_price' => 'required|numeric',
-            'sale_price' => 'numeric',
             'sku' => 'required',
             'qty' => 'required|numeric',
-            'product_image' => 'required|mimes:jpeg,png',
+            'product_image' => 'required',
             'product_category' => 'required',
         ]);
         $product = Product::find($this->product_id);
