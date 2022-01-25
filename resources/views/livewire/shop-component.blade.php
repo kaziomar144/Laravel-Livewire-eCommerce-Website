@@ -57,8 +57,34 @@
 
 					</div><!--end wrap shop control-->
 
+					<style>
+						.product-wish{
+							position: absolute;
+							top: 10%;
+							left: 0;
+							z-index: 99;
+							right: 30px;
+							text-align: right;
+							padding-top: 0;
+						}
+						.product-wish .fa{
+							color: #cbcbcb;
+							font-size: 32px;
+							transition: all linear 0.3s;
+						}
+						.product-wish .fa:hover{
+							color:#ff7007;
+						}
+						.fill-heart{
+							color: #ff7007 !important;
+						}
+					</style>
+
 					<div class="row">
 						<ul class="product-list grid-products equal-container">
+							@php
+								$witems = Cart::instance('wishlist')->content()->pluck('id');
+							@endphp
 							@foreach ($products as $product)
 							<li class="col-lg-4 col-md-6 col-sm-6 col-xs-6 ">
 								<div class="product product-style-3 equal-elem ">
@@ -80,9 +106,23 @@
 										@if ($product->sale_price && $sale->status == 1 && $sale->sale_date > Carbon\Carbon::now())
 										<div class="wrap-price"><ins><p class="product-price">${{$product->sale_price}}</p></ins> <del><p class="product-price">${{$product->regular_price}}</p></del></div>
 										<a wire:click.prevent="store({{$product->id}},'{{$product->name}}',{{$product->sale_price}})" class="btn add-to-cart">Add To Cart</a>
+										<div class="product-wish">
+											@if ($witems->contains($product->id))
+												<a href="#"><i class="fa fa-heart fill-heart"></i></a>
+											@else
+												<a href="#" wire:click.prevent="addToWishlist({{$product->id}},'{{$product->name}}',{{$product->sale_price}})"><i class="fa fa-heart"></i></a>
+											@endif
+										</div>
 										@else
 										<div class="wrap-price"><span class="product-price">${{$product->regular_price}}</span></div>
 										<a wire:click.prevent="store({{$product->id}},'{{$product->name}}',{{$product->regular_price}})" class="btn add-to-cart">Add To Cart</a>
+										<div class="product-wish">
+											@if ($witems->contains($product->id))
+												<a href="#"><i class="fa fa-heart fill-heart"></i></a>
+											@else
+												<a href="#" wire:click.prevent="addToWishlist({{$product->id}},'{{$product->name}}',{{$product->regular_price}})"><i class="fa fa-heart"></i></a>
+											@endif
+										</div>
 										@endif
 										
 									</div>
@@ -141,7 +181,7 @@
 					<div class="widget mercado-widget filter-widget price-filter">
 						<h2 class="widget-title">Price:  &nbsp; <span style="color: #ff2832">${{$min_price}} - ${{$max_price}}</span></h2>
 						<div class="widget-content" style="padding: 10px 5px 40px 5px">
-							<div id="slider" wire:ignore></div>
+							 <div id="slider" wire:ignore></div> {{-- add noUi slider here --}}
 							<input type="hidden" id="min_price" value="{{$min_price}}">
 							<input type="hidden" id="max_price" value="{{$max_price}}">
 						</div>
@@ -254,7 +294,6 @@
 			let slider = document.getElementById('slider');
 			let min_p = parseInt(document.getElementById('min_price').value);
 			let max_p = parseInt(document.getElementById('max_price').value);
-			console.log(min_p + max_p);
 			noUiSlider.create(slider,{
 				start:[min_p,max_p],
 				connect:true,
