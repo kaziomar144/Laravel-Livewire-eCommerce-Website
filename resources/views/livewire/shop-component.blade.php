@@ -67,7 +67,7 @@
 							text-align: right;
 							padding-top: 0;
 						}
-						.product-wish .fa{
+						.product-wish a{
 							color: #cbcbcb;
 							font-size: 32px;
 							transition: all linear 0.3s;
@@ -103,12 +103,13 @@
 									</div>
 									<div class="product-info">
 										<a href="{{route('product.details',['slug'=>$product->slug])}}" class="product-name"><span>{{ \Illuminate\Support\Str::limit($product->name, 25, $end='...') }}</span></a>
+										
 										@if ($product->sale_price && $sale->status == 1 && $sale->sale_date > Carbon\Carbon::now())
 										<div class="wrap-price"><ins><p class="product-price">${{$product->sale_price}}</p></ins> <del><p class="product-price">${{$product->regular_price}}</p></del></div>
 										<a wire:click.prevent="store({{$product->id}},'{{$product->name}}',{{$product->sale_price}})" class="btn add-to-cart">Add To Cart</a>
 										<div class="product-wish">
 											@if ($witems->contains($product->id))
-												<a href="#"><i class="fa fa-heart fill-heart"></i></a>
+												<a href="#" wire:click.prevent="removeFormWishlist({{$product->id}})"><i class="fa fa-heart fill-heart"></i></a>
 											@else
 												<a href="#" wire:click.prevent="addToWishlist({{$product->id}},'{{$product->name}}',{{$product->sale_price}})"><i class="fa fa-heart"></i></a>
 											@endif
@@ -118,7 +119,7 @@
 										<a wire:click.prevent="store({{$product->id}},'{{$product->name}}',{{$product->regular_price}})" class="btn add-to-cart">Add To Cart</a>
 										<div class="product-wish">
 											@if ($witems->contains($product->id))
-												<a href="#"><i class="fa fa-heart fill-heart"></i></a>
+												<a href="#"  wire:click.prevent="removeFormWishlist({{$product->id}})"><i class="fa fa-heart fill-heart"></i></a>
 											@else
 												<a href="#" wire:click.prevent="addToWishlist({{$product->id}},'{{$product->name}}',{{$product->regular_price}})"><i class="fa fa-heart"></i></a>
 											@endif
