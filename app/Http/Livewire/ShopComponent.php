@@ -34,11 +34,15 @@ class ShopComponent extends Component
         session()->flash('msg','Item added in Cart');
         session()->flash('msg-type','success');
         return redirect()->route('product.cart');
+        $this->emitTo('cart-count-component','refreshComponent');
     }
 
     public function addToWishlist($product_id, $product_name, $product_price)
     {
         Cart::instance('wishlist')->add($product_id, $product_name,1, $product_price)->associate('App\Models\Product');
+        session()->flash('msg','Item added in Wishlist');
+        session()->flash('msg-type','success');
+        $this->emitTo('wishlist-count-component','refreshComponent');
     }
 
     use WithPagination;
