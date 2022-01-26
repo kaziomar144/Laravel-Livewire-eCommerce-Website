@@ -291,6 +291,10 @@
 	{{-- <!--main area--> --}}
 
 	@push('scripts')
+		
+	@endpush
+
+	@push('scripts')
 		<script>
 			let slider = document.getElementById('slider');
 			let min_p = parseInt(document.getElementById('min_price').value);
@@ -314,3 +318,5 @@
 			})
 		</script>
 	@endpush
+
+	

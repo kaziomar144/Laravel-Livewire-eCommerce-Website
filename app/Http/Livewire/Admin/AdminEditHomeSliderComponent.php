@@ -61,6 +61,7 @@ class AdminEditHomeSliderComponent extends Component
         $slider->save();
         session()->flash('msg','Slider has been Updated successfully');
         session()->flash('msg-type','success');
+        $this->dispatchBrowserEvent('toastr',['type' => 'Success', 'message' => 'Slider has been Updated successfully']);
         return redirect()->route('admin.homeslider');
     }
 

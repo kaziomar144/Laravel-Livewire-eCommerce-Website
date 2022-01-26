@@ -21,6 +21,7 @@ class AdminHomeSliderComponent extends Component
         $slider->delete();
         session()->flash('msg','Slider has been deleted successfully');
         session()->flash('msg-type','danger');
+        $this->dispatchBrowserEvent('toastr',['type' => 'Error', 'message' => 'Slider has been deleted successfully']);
     }
     public function render()
     {

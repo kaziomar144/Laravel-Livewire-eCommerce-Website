@@ -15,6 +15,7 @@ class AdminCategoryComponent extends Component
         $category->delete();
         session()->flash('msg','Category has been delete successfully');
         session()->flash('msg-type','danger');
+        $this->dispatchBrowserEvent('toastr',['type' => 'Error','message' =>'Category has been delete successfully']);
     }
     public function render()
     {

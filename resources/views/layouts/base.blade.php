@@ -8,7 +8,8 @@
     <link rel="shortcut icon" type="image/x-icon" href="{{asset('assets')}}/images/favicon.ico">
 	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,400italic,700,700italic,900,900italic&amp;subset=latin,latin-ext" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Open%20Sans:300,400,400italic,600,600italic,700,700italic&amp;subset=latin,latin-ext" rel="stylesheet">
-	<link rel="stylesheet" href="{{asset('assets')}}/toastr.min.css">
+	{{-- <link rel="stylesheet" href="{{asset('assets')}}/toastr.min.css"> --}}
+	<link rel="stylesheet" href="{{asset('toastr')}}/toastr.min.css">
 
 	<link rel="stylesheet" type="text/css" href="{{asset('assets')}}/css/animate.css">
 	<link rel="stylesheet" type="text/css" href="{{asset('assets')}}/css/font-awesome.min.css">
@@ -459,7 +460,8 @@
 		</div>
 	</footer>
 	<script src="{{asset('assets')}}/jquery-3.6.0.min.js"></script>
-	<script src="{{asset('assets')}}/toastr.min.js"></script>
+	{{-- <script src="{{asset('assets')}}/toastr.min.js"></script> --}}
+	<script src="{{asset('toastr')}}/toastr.min.js"></script>
 	
 	{{-- <script src="{{asset('assets')}}/js/jquery-1.12.4.minb8ff.js?ver=1.12.4"></script> --}}
 	<script src="{{asset('assets')}}/js/jquery-ui-1.12.4.minb8ff.js?ver=1.12.4"></script>
@@ -485,10 +487,22 @@
 	@stack('scripts')
 
 
-	@if (Session::has('msg'))
-    <script>
-        toastr.{!! Session::get('msg-type') !!}("{!! Session::get('msg') !!}");
-    </script>
-    @endif
+	<script>
+		$(document).ready(function () {
+			toastr.options = {
+						"closeButton": true,
+						"progressBar": true,
+						"positionClass": "toast-bottom-right",
+						}
+						
+					window.addEventListener('toastr',event => {
+						if(event.detail.type == 'Success'){
+							toastr.success(event.detail.message, event.detail.type);
+						}else if(event.detail.type == 'Error'){
+							toastr.error(event.detail.message, event.detail.type);
+						}
+					})
+		});
+	</script>
 </body>
 </html>

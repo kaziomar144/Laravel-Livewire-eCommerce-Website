@@ -27,6 +27,7 @@ class AdminHomeCategoryComponent extends Component
         $category->save();
         session()->flash('msg','HomeCategory has been updated successfully!');
         session()->flash('msg-type','success');
+        $this->dispatchBrowserEvent('toastr',['type' => 'Success', 'message' => 'HomeCategory has been updated successfully!']);
     }
 
     public function render()

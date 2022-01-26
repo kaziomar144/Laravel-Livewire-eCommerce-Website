@@ -48,6 +48,7 @@ class AdminEditCategoryComponent extends Component
         $category->save();
         session()->flash('msg','Category has been updated successfully');
         session()->flash('msg-type','success');
+        $this->dispatchBrowserEvent('toastr',['type' => 'Success', 'message' => 'Category has been updated successfully']);
     }
 
     public function render()

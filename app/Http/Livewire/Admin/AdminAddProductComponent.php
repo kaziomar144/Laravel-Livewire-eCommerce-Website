@@ -83,6 +83,7 @@ class AdminAddProductComponent extends Component
         $product->save();
         session()->flash('msg','Product has been added successfully');
         session()->flash('msg-type','success');
+        $this->dispatchBrowserEvent('toastr',['type' => 'Success','message' =>'Product has been added successfully']);
         return redirect()->route('admin.products');
     }
 

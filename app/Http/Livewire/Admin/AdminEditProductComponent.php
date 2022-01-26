@@ -102,6 +102,7 @@ class AdminEditProductComponent extends Component
         $product->save();
         session()->flash('msg','Product has been updated successfully');
         session()->flash('msg-type','success');
+        $this->dispatchBrowserEvent('toastr',['type' => 'Success', 'message' => 'Product has been updated successfully']);
         return redirect()->route('admin.products');
     }
 

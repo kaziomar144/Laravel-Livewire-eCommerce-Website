@@ -15,6 +15,7 @@ class AdminProductComponent extends Component
         $product->delete();
         session()->flash('msg','Product has been delete');
         session()->flash('msg-type','danger');
+        $this->dispatchBrowserEvent('toastr',['type' => 'Error', 'message' => 'Product has been delete']);
     }
     public function render()
     {

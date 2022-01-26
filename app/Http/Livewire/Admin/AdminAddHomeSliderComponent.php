@@ -52,6 +52,7 @@ class AdminAddHomeSliderComponent extends Component
         $slider->save();
         session()->flash('msg','Slider has been created successfully');
         session()->flash('msg-type','success');
+        $this->dispatchBrowserEvent('toastr',['type' => 'Success', 'message' => 'Slider has been created successfully']);
         $this->resetForm();
     }
 

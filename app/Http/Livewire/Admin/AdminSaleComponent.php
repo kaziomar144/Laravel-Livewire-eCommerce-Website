@@ -25,6 +25,7 @@ class AdminSaleComponent extends Component
         $sale->save();
         session()->flash('msg','Record has been updated successfully!');
         session()->flash('msg-type','success');
+        $this->dispatchBrowserEvent('toastr',['type' => 'Success', 'message' => 'Record has been updated successfully!']);
     }
 
 
