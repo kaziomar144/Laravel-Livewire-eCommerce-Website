@@ -28,6 +28,7 @@ class CartComponent extends Component
     {
         Cart::instance('cart')->remove($rowId);
         $this->emitTo('cart-count-component','refreshComponent');
+        $this->dispatchBrowserEvent('toastr',['type' => 'Error','message'=>'Item has been removed']);
         session()->flash('msg','Item has been removed');
         session()->flash('msg-type','success');
         // return redirect()->route('product.cart');
@@ -37,6 +38,7 @@ class CartComponent extends Component
     {
         Cart::instance('cart')->destroy();
         $this->emitTo('cart-count-component','refreshComponent');
+        $this->dispatchBrowserEvent('toastr',['type' => 'Error','message'=>'All item has been removed']);
         session()->flash('msg','All item has been removed');
         session()->flash('msg-type','success');
     }
