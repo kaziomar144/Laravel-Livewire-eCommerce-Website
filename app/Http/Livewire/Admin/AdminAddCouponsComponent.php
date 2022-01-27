@@ -37,6 +37,7 @@ class AdminAddCouponsComponent extends Component
         $coupon->cart_value = $this->cart_value;
         $coupon->save();
         $this->dispatchBrowserEvent('toastr',['type'=>'Success','message' => 'Coupon has been created successfully!']);
+        $this->emit('addCoupon');
     }
 
 

@@ -508,5 +508,10 @@
 					})
 		});
 	</script>
+	<script>
+		 window.livewire.on('addCoupon',()=>{
+            $('.form-horizontal')[0].reset();
+        });
+	</script>
 </body>
 </html>
