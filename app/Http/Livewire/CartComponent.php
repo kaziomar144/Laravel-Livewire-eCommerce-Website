@@ -7,7 +7,7 @@ use App\Models\Sale;
 use Carbon\Carbon;
 use Livewire\Component;
 use Cart;
-
+use Illuminate\Support\Facades\Auth;
 class CartComponent extends Component
 {
     public $haveCouponCode;
@@ -113,6 +113,37 @@ class CartComponent extends Component
         $this->dispatchBrowserEvent('toastr',['type' => 'Error','message' => 'Coupon has been removed!']);
     }
 
+    public function checkout()
+    {
+        if(Auth::check()){
+            return redirect()->route('checkout');
+        }else{
+            return redirect()->route('login');
+        }
+    }
+
+
+    public function setAmountForCheckout()
+    {
+        if(session()->has('coupon')){
+            session()->put('checkout',[
+                'discount' => $this->discount,
+                'subtotal' => $this->subtotalAfterDiscount,
+                'tax' => $this->taxAfterDiscount,
+                'total' => $this->totalAfterDiscount
+            ]);
+        }
+        else{
+            session()->put('checkout',[
+                'discount' => 0,
+                'subtotal' => Cart::instance('cart')->subtotal(),
+                'tax' => Cart::instance('cart')->tax(),
+                'total' => Cart::instance('cart')->total()
+            ]);
+        }
+    }
+
+
 
     public function render()
     {
@@ -124,6 +155,8 @@ class CartComponent extends Component
             }
         }
         $sale = Sale::find(1);
+
+        $this->setAmountForCheckout();
         return view('livewire.cart-component',compact('sale'))->layout('layouts.base');
     }
 }
