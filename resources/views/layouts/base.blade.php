@@ -97,6 +97,9 @@
 														<a title="Products" href="{{route('admin.sale')}}">Sale Setting</a>	
 													</li>
 													<li class="menu-item" >
+														<a title="Products" href="{{route('admin.coupons')}}">All Coupon</a>	
+													</li>
+													<li class="menu-item" >
 														<a title="Manage Home Slider" href="{{route('admin.homeslider')}}">Manage Home Slider</a>						
 													</li>
 													<li class="menu-item" >
