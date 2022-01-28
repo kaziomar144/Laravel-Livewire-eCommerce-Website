@@ -83,6 +83,9 @@
 								<label class="checkbox-field">
 									<input class="frm-input " name="have-code" id="have-code" value="1" type="checkbox" wire:model="haveCouponCode"><span>I have coupon code</span>
 								</label>
+								<div wire:loading>
+									<img src="{{asset('assets')}}/images/loader.gif" alt="" width="25"> <span>Loading...</span>
+								</div>
 								@if ($haveCouponCode == 1)
 								<div class="summary-item">
 									<form wire:submit.prevent="applyCouponCode">

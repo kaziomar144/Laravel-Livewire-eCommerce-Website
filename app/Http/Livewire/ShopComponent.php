@@ -33,7 +33,7 @@ class ShopComponent extends Component
         Cart::instance('cart')->add($product_id,$product_name,1,$product_price)->associate('App\Models\Product');
         session()->flash('msg','Item added in Cart');
         session()->flash('msg-type','success');
-        return redirect()->route('product.cart');
+        $this->dispatchBrowserEvent('toastr',['type' => 'Success','message' => 'Item added in Cart']);
         $this->emitTo('cart-count-component','refreshComponent');
     }
 
