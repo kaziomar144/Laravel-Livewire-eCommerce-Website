@@ -105,6 +105,9 @@
 													<li class="menu-item" >
 														<a title="Manage Home Categories" href="{{route('admin.homecategories')}}">Manage Home Categories</a>						
 													</li>
+													<li class="menu-item" >
+														<a title="All Orders" href="{{route('admin.orders')}}">All Orders</a>						
+													</li>
 													<form action="{{route('logout')}}" method="POST">
 														@csrf
 														<li class="menu-item" >
