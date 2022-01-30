@@ -501,7 +501,7 @@
 			toastr.options = {
 						"closeButton": true,
 						"progressBar": true,
-						"timeOut": "3000",
+						"timeOut": "5000",
 						"positionClass": "toast-bottom-right",
 						}
 						

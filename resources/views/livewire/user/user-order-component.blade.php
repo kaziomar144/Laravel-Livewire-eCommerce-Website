@@ -40,7 +40,7 @@
                                          <td>{{$order->mobile}}</td>
                                          <td>{{$order->email}}</td>
                                          <td>{{$order->zipcode}}</td>
-                                         <td>{{$order->status}}</td>
+                                         <td><span style="text-transform: capitalize" class="label @if($order->status == 'ordered') label-default @elseif($order->status == 'delivered') label-success @else label-danger @endif">{{$order->status}}</span></td>
                                          <td>{{$order->created_at}}</td>
                                          <td>
                                              <a href="{{route('user.orderdetails',['order_id' => $order->id])}}" class="btn btn-info">Detalis</a>

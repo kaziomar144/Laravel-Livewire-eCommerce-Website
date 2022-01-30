@@ -26,6 +26,7 @@
                                      <th>Zipcode</th>
                                      <th>Status</th>
                                      <th>Order Date</th>
+                                     <th colspan="2" class="text-center">Action</th>
                                  </tr>
                              </thead>
                              <tbody>
@@ -40,10 +41,22 @@
                                          <td>{{$order->mobile}}</td>
                                          <td>{{$order->email}}</td>
                                          <td>{{$order->zipcode}}</td>
-                                         <td>{{$order->status}}</td>
-                                         <td>{{$order->created_at}}</td>
+                                         <td><span style="text-transform: capitalize" class="label @if($order->status == 'ordered') label-default @elseif($order->status == 'delivered') label-success @else label-danger @endif">{{$order->status}}</span></td>
+                                         <td>{{$order->created_at->format('d-m-Y h:i a')}}</td>
                                          <td>
                                              <a href="{{route('admin.orderdetails',['order_id' => $order->id])}}" class="btn btn-info">Detalis</a>
+                                         </td>
+                                         <td>
+                                             <!-- Single button -->
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Status <span class="caret"></span>
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                <li><a href="#" wire:click.prevent="updateOrderStatus({{$order->id}},'delivered')">Delivered</a></li>
+                                                <li><a href="#" wire:click.prevent="updateOrderStatus({{$order->id}},'canceled')">Canceled</a></li>
+                                                </ul>
+                                            </div>
                                          </td>
                                      </tr>
                                  @endforeach
@@ -58,4 +71,3 @@
          </div>
     </div>
  </div>
- 
