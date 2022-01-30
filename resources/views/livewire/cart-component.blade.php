@@ -67,7 +67,10 @@
 							<h4 class="title-box">Order Summary</h4>
 							<p class="summary-info"><span class="title">Subtotal</span><b class="index">${{number_format(Cart::instance('cart')->subtotal(),2)}}</b></p>
 							@if (Session::has('coupon'))
-								<p class="summary-info"><span class="title">Discount ({{Session::get('coupon')['code']}}) <a href="#" title="Remove Coupon" wire:click.prevent= "removeCoupon"><i class="fa fa-times text-danger"></i></a></span><b class="index">-${{number_format($discount,2)}}</b></p>
+								<p class="summary-info"><span class="title">Discount ({{Session::get('coupon')['code']}}) <a href="#" title="Remove Coupon" wire:click.prevent= "removeCoupon"><i class="fa fa-times text-danger"></i></a></span><b class="index">-${{number_format($discount,2)}}</b>
+									<div wire:loading wire:target="removeCoupon">
+										<img src="{{asset('assets')}}/images/loader.gif" alt="" width="25"> <span>Loading...</span>
+									</div></p>
 								<p class="summary-info"><span class="title">Tax ({{config('cart.tax')}}%)</span><b class="index">${{number_format($taxAfterDiscount,2)}}</b></p>
 								<p class="summary-info"><span class="title">Subtotal with Discount</span><b class="index">${{number_format($subtotalAfterDiscount,2)}}</b></p>
 								<p class="summary-info total-info "><span class="title">Total</span><b class="index">${{number_format($totalAfterDiscount,2)}}</b></p>
@@ -83,7 +86,7 @@
 								<label class="checkbox-field">
 									<input class="frm-input " name="have-code" id="have-code" value="1" type="checkbox" wire:model="haveCouponCode"><span>I have coupon code</span>
 								</label>
-								<div wire:loading>
+								<div wire:loading wire:target="haveCouponCode">
 									<img src="{{asset('assets')}}/images/loader.gif" alt="" width="25"> <span>Loading...</span>
 								</div>
 								@if ($haveCouponCode == 1)
@@ -95,11 +98,17 @@
 											<input type="text" name="coupon-code" wire:model="couponCode">
 										</p>
 										<button type="submit" class="btn btn-small">Apply</button>
+										<div wire:loading wire:target="applyCouponCode">
+											<img src="{{asset('assets')}}/images/loader.gif" alt="" width="25"> <span>Loading...</span>
+										</div>
 									</form>
 								</div>
 								@endif
 							@endif
-							<a class="btn btn-checkout" href="#" wire:click.prevent="checkout">Check out</a>
+							<a class="btn btn-checkout" href="#" wire:click.prevent="checkout"><span wire:loading wire:target="checkout" style="padding-right: 5px">
+								<i style="font-size: 14px" class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+							</span> Check out</a>
+							
 							<a class="link-to-shop" href="{{route('product.shop')}}">Continue Shopping<i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
 						</div>
 						

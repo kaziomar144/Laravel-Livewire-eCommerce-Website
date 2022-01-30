@@ -3,12 +3,8 @@
          <div class="row">
              <div class="col-md-12">
                  <div class="panel panel-default">
-                     <div class="panel-heading">
-                         <div class="row">
-                             <div class="col-md-12">                                
-                                 All Orders
-                             </div>
-                         </div>
+                     <div class="panel-heading">                               
+                        All Orders
                      </div>
                      <div class="panel-body">
                          @if (Session::has('msg'))
@@ -47,8 +43,7 @@
                                          <td>{{$order->status}}</td>
                                          <td>{{$order->created_at}}</td>
                                          <td>
-                                             <a href="" class="btn btn-success">Edit</a>
-                                             <a onclick="confirm('Are you sure, You want to delete this order?') || event.stopImmediatePropagation()" wire:click.prevent="deleteorder({{$order->id}})" class="btn btn-danger">Delete</a>
+                                             <a href="{{route('admin.orderdetails',['order_id' => $order->id])}}" class="btn btn-info">Detalis</a>
                                          </td>
                                      </tr>
                                  @endforeach
