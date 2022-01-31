@@ -62,6 +62,11 @@
                                     </div>
                                     
                                     <div class="price-field sub-total"><p class="price">${{$item->price * $item->quantity}}</p></div>
+                                    @if($order->status == 'delivered' && $item->rstatus == false)
+                                    <div class="price-field sub-total"><p class="price"><a href="{{route('user.review',['order_item_id' => $item->id])}}">Write Review</a></p></div>
+                                    @elseif($item->rstatus == true)
+                                    <div class="price-field sub-total"><p class="price">Already Review</p></div>
+                                    @endif
                                 </li>	
                                 @endforeach											
                             </ul>
@@ -70,7 +75,7 @@
                             <div class="order-summary">
                                 <h4 class="title-box">Order Summary</h4>
                                 <p class="summary-info"><span class="title">Subtotal</span><b class="index">${{$order->subtotal}}</b></p>
-                                <p class="summary-info"><span class="title">Discount</span><b class="index">${{$order->discount}}</b></p>
+                                {{-- <p class="summary-info"><span class="title">Discount</span><b class="index">${{$order->discount}}</b></p> --}}
                                 <p class="summary-info"><span class="title">Tax</span><b class="index">${{$order->tax}}</b></p>
                                 <p class="summary-info"><span class="title">Shipping</span><b class="index">Free Shipping</b></p>
                                 <p class="summary-info"><span class="title">Total</span><b class="index">${{$order->total}}</b></p>
