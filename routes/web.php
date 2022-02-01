@@ -25,6 +25,7 @@ use App\Http\Livewire\HomeComponent;
 use App\Http\Livewire\SearchComponent;
 use App\Http\Livewire\ShopComponent;
 use App\Http\Livewire\ThankyouComponent;
+use App\Http\Livewire\User\UserChangePasswordComponent;
 use App\Http\Livewire\User\UserDashboardComponent;
 use App\Http\Livewire\User\UserOrderComponent;
 use App\Http\Livewire\User\UserOrderDetailsComponent;
@@ -82,6 +83,8 @@ Route::group(['prefix' => 'user','middleware' => ['auth:sanctum','verified']], f
     Route::get('/orders',UserOrderComponent::class)->name('user.orders');
     Route::get('/order/{order_id}',UserOrderDetailsComponent::class)->name('user.orderdetails');
     Route::get('/review/{order_item_id}',UserReviewComponent::class)->name('user.review');
+
+    Route::get('/change-password',UserChangePasswordComponent::class)->name('user.changepassword');
 });
 
 //==========For Admin============

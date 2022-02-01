@@ -126,6 +126,9 @@
 												<li class="menu-item" >
 													<a title="My Orders" href="{{route('user.orders')}}">My Orders</a>
 												</li>
+												<li class="menu-item" >
+													<a title="My Orders" href="{{route('user.changepassword')}}">Change Password</a>
+												</li>
 												<form action="{{route('logout')}}" method="POST">
 													@csrf
 													<li class="menu-item" >
@@ -517,6 +520,9 @@
 	<script>
 		 window.livewire.on('addCoupon',()=>{
             $('.form-horizontal')[0].reset();
+        });
+		 window.livewire.on('changePassword',()=>{
+            $('#changePassword')[0].reset();
         });
 	</script>
 </body>
