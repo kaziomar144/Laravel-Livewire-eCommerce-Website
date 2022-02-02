@@ -22,6 +22,7 @@ class AdminAddProductComponent extends Component
     public $qty;
     public $product_image;
     public $product_category;
+    public $product_images;
 
     use WithFileUploads;
     public function mount()
@@ -79,6 +80,16 @@ class AdminAddProductComponent extends Component
         $imageName= Carbon::now()->timestamp. '.' .$this->product_image->extension();
         $this->product_image->storeAs('products',$imageName);
         $product->image = $imageName;
+        if($this->product_images){
+            $imagesName = [];
+            foreach ($this->product_images as $key => $image) {
+                $imgName = Carbon::now()->timestamp. $key. '.' .$this->product_image->extension();
+                $image->storeAS('products',$imgName);
+                $imagesName[] = $imgName;
+            }
+            $imagesName = json_encode($imagesName);
+            $product->images = $imagesName;
+        }
         $product->category_id = $this->product_category;
         $product->save();
         session()->flash('msg','Product has been added successfully');
