@@ -80,7 +80,20 @@ class AdminSettingComponent extends Component
              $setting->instagram = $this->instagram;
              $setting->youtube = $this->youtube;
              $setting->save();
-             $this->dispatchBrowserEvent('toastr',['type' => 'Success','message' => 'Setting has been successfully!']);
+             $this->dispatchBrowserEvent('toastr',['type' => 'Success','message' => 'Settings has been added successfully!']);
+        }else{
+            $setting->email = $this->email;
+             $setting->phone1 = $this->phone1;
+             $setting->phone2 = $this->phone2;
+             $setting->address = $this->address;
+             $setting->map = $this->map;
+             $setting->twitter = $this->twitter;
+             $setting->facebook = $this->facebook;
+             $setting->pinterest = $this->pinterest;
+             $setting->instagram = $this->instagram;
+             $setting->youtube = $this->youtube;
+             $setting->save();
+             $this->dispatchBrowserEvent('toastr',['type' => 'Success','message' => 'Settings has been updated successfully!']);
         }
     }
 
