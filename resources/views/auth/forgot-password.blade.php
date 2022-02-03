@@ -51,6 +51,11 @@
                         
 						<div class="wrap-login-item ">						
 							<div class="login-form form-item form-stl">
+                                @if (session('status'))
+                                    <div class="mb-4 font-medium text-sm text-green-600">
+                                        <strong style="color: crimson">{{ session('status') }}</strong>
+                                    </div>
+                                @endif
                                 <div class="text-gray">
                                     {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
                                 </div>
