@@ -136,6 +136,30 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <label class="col-md-4 control-label">Product Gallery:</label>
+                                <div class="col-md-4">
+                                    <input type="file" class="form-control" wire:model="newImages" multiple>
+                                    @error('newImages')
+                                        <div class="invalid-feedback" style="color: crimson">{{$message}}</div>
+                                    @enderror
+                                    @if ($newImages)
+                                       @foreach ($newImages as $Images)
+                                        @if ($Images)
+                                            <img src="{{$Images->temporaryUrl()}}" width="120">
+                                        @endif
+                                       @endforeach
+                                       @else
+                                      @if ($product_images)
+                                        @foreach ($product_images as $image)
+                                        @if($image)
+                                        <img src="{{asset('assets/images/products')}}/{{$image}}" width="120"  alt="{{$product_name}}">
+                                        @endif
+                                        @endforeach
+                                      @endif
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <label class="col-md-4 control-label">Category:</label>
                                 <div class="col-md-4">
                                     <select wire:model="product_category" class="form-control">

@@ -18,13 +18,16 @@ class AdminProductComponent extends Component
         if($product->images){
             $images = json_decode($product->images);
             foreach($images as $image){
-                unlink('assets/images/products/'.$image);
+                if($image){
+                    unlink('assets/images/products/'.$image);
+                }
+                
             }
         }
         $product->delete();
         session()->flash('msg','Product has been delete');
         session()->flash('msg-type','danger');
-        $this->dispatchBrowserEvent('toastr',['type' => 'Error', 'message' => 'Product has been delete']);
+        $this->dispatchBrowserEvent('toastr',['type' => 'Error', 'message' => 'Product has been deleted']);
     }
     public function render()
     {

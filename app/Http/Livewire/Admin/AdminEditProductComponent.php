@@ -29,6 +29,9 @@ class AdminEditProductComponent extends Component
     public $product_image;
     public $product_category;
 
+    public $product_images;
+    public $newImages;
+
     public function mount($product_slug)
     {
         $this->product_slug = $product_slug;
@@ -45,6 +48,7 @@ class AdminEditProductComponent extends Component
         $this->featured = $product->featured;
         $this->qty = $product->quantity;
         $this->product_image = $product->image;
+        $this->product_images = json_decode($product->images);
         $this->product_category = $product->category_id;
     }
     public function generateSlug()
@@ -65,9 +69,14 @@ class AdminEditProductComponent extends Component
             'regular_price' => 'required|numeric',
             'sku' => 'required',
             'qty' => 'required|numeric',
-            'product_image' => 'required',
             'product_category' => 'required',
         ]);
+        if($this->newImage){
+            $this->validateOnly($filed,[
+                'newImage' => 'required|mimes:jpeg,png'
+            ]);
+        }
+        
     }
     public function updateProduct()
     { 
@@ -82,6 +91,11 @@ class AdminEditProductComponent extends Component
             'product_image' => 'required',
             'product_category' => 'required',
         ]);
+        if($this->newImage){
+            $this->validate([
+                'newImage' => 'required|mimes:jpeg,png'
+            ]);
+        }
         $product = Product::find($this->product_id);
         $product->name = $this->product_name;
         $product->slug = $this->slug;
@@ -94,10 +108,29 @@ class AdminEditProductComponent extends Component
         $product->featured = $this->featured;
         $product->quantity = $this->qty;
         if($this->newImage){
+            unlink('assets/images/products/'.$product->image);
             $imageName= Carbon::now()->timestamp. '.' .$this->newImage->extension();
             $this->newImage->storeAs('products',$imageName);
             $product->image = $imageName;
-        }        
+        }    
+        if($this->newImages){
+            if($product->images){
+                $images = json_decode($product->images);
+                foreach ($images as $img) {
+                    if($img){
+                        unlink('assets/images/products/'.$img);
+                    }
+                }
+            }
+            $imagesName = [];
+            foreach ($this->newImages as $key => $image) {
+                $imgsName = Carbon::now()->timestamp . $key . '.' .$image->extension();
+                $image->storeAs('products',$imgsName);
+                $imagesName[] = $imgsName;
+            }
+            $imagesName = json_encode($imagesName);
+            $product->images = $imagesName;
+        }    
         $product->category_id = $this->product_category;
         $product->save();
         session()->flash('msg','Product has been updated successfully');
