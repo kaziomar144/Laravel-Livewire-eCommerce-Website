@@ -8,7 +8,9 @@ use App\Models\HomeSlider;
 use App\Models\Product;
 use App\Models\Sale;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use Cart;
 
 class HomeComponent extends Component
 {
@@ -29,6 +31,9 @@ class HomeComponent extends Component
         // }else{
         //     echo 'no'; exit;
         // }
+        if(Auth::check()){
+            Cart::instance('cart')->restore(Auth::user()->email);
+        }
         return view('livewire.home-component',compact('sliders','latest_products','categories','no_fo_products','sale_products','sale'))->layout('layouts.base');
     }
 }

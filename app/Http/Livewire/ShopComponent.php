@@ -8,6 +8,8 @@ use App\Models\Sale;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Cart;
+use Illuminate\Support\Facades\Auth;
+
 class ShopComponent extends Component
 {
     public $sorting;
@@ -74,6 +76,9 @@ class ShopComponent extends Component
 
         $categories = Category::all();
         $sale = Sale::findOrFail(1);
+        if(Auth::check()){
+            Cart::instance('cart')->store(Auth::user()->email);
+        }
         return view('livewire.shop-component',compact('products','categories','sale'))->layout('layouts.base');
     }
     public function paginationView()
