@@ -25,6 +25,7 @@
                                     <th>ID</th>
                                     <th>Category Name</th>
                                     <th>Slug</th>
+                                    <th>Sub Category</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -34,6 +35,13 @@
                                         <td>{{$category->id}}</td>
                                         <td>{{$category->name}}</td>
                                         <td>{{$category->slug}}</td>
+                                        <td>
+                                            <ul style="list-style: none">
+                                                @foreach ($category->subcategories as $subcategory)
+                                                    <li><i class="fa fa-caret-right"></i> {{$subcategory->name}}</li>
+                                                @endforeach
+                                            </ul>
+                                        </td>
                                         <td>
                                             <a href="{{route('admin.editcategory',['category_slug'=>$category->slug])}}" class="btn btn-success">Edit</a>
                                             <a href="#" onclick="confirm('Are you sure, You want to delete this category?') || event.stopImmediatePropagation()" wire:click.prevent="deleteCategory({{$category->id}})" class="btn btn-danger">Delete</a>

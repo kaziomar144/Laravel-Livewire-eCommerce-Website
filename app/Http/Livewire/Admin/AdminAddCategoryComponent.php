@@ -28,7 +28,7 @@ class AdminAddCategoryComponent extends Component
     public function updated($filed)
     {
         $this->validateOnly($filed,[
-            'name' => 'required|min:5|max:30',
+            'name' => 'required',
             'slug' => 'required|unique:categories',
         ]);
     }
@@ -36,7 +36,7 @@ class AdminAddCategoryComponent extends Component
     public function storeCategory()
     { 
          $this->validate([
-            'name' => 'required|min:5|max:30',
+            'name' => 'required',
             'slug' => 'required|unique:categories',
         ]);
         if ($this->category_id) {
