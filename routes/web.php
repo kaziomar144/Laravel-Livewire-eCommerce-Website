@@ -103,7 +103,7 @@ Route::group(['prefix' => 'admin','middleware' => ['auth:sanctum','verified','au
     // for Category
     Route::get('/categories',AdminCategoryComponent::class)->name('admin.categories');
     Route::get('/category/add',AdminAddCategoryComponent::class)->name('admin.addcategory');
-    Route::get('/category/edit/{category_slug}',AdminEditCategoryComponent::class)->name('admin.editcategory');
+    Route::get('/category/edit/{category_slug}/{scategory_slug?}',AdminEditCategoryComponent::class)->name('admin.editcategory');
     // for Product
     Route::get('/products',AdminProductComponent::class)->name('admin.products');
     Route::get('/product/add',AdminAddProductComponent::class)->name('admin.addproduct');

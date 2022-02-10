@@ -47,9 +47,6 @@
                                             <option value="{{$category->id}}">{{$category->name}}</option>
                                         @endforeach
                                     </select>
-                                    @error('slug')
-                                        <div class="invalid-feedback" style="color: crimson">{{$message}}</div>
-                                    @enderror
                                 </div>
                             </div>
                             <div class="form-group">
