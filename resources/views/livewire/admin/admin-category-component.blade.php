@@ -38,7 +38,10 @@
                                         <td>
                                             <ul style="list-style: none">
                                                 @foreach ($category->subcategories as $subcategory)
-                                                    <li><i class="fa fa-caret-right"></i> {{$subcategory->name}} <a href="{{route('admin.editcategory',['category_slug'=>$category->slug,'scategory_slug'=>$subcategory->slug])}}"><i class="fa fa-edit"></i></a></li>
+                                                    <li><i class="fa fa-caret-right"></i> {{$subcategory->name}} 
+                                                        <a href="{{route('admin.editcategory',['category_slug'=>$category->slug,'scategory_slug'=>$subcategory->slug])}}"><i class="fa fa-edit"></i></a>
+                                                        <a href="#" onclick="confirm('Are you sure, You want to delete this subcategory?') || event.stopImmediatePropagation()" wire:click.prevent="deleteSubcategory({{$subcategory->id}})"><i class="fa fa-times text-danger"></i></a>
+                                                    </li>
                                                 @endforeach
                                             </ul>
                                         </td>
